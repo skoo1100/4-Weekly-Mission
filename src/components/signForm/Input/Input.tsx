@@ -21,7 +21,7 @@ const PASSWORD: string = 'password';
 const TEXT: string = 'text';
 const eyeIcon = '/images/eye-on.svg';
 const eyeSlashIcon = 'images/eye-off.svg';
-const REGEXP_EMAIL = new RegExp('[a-z0-9]+@[a-z]+.[a-z]'); // 이메일 정규 표현식
+const REGEXP_EMAIL = new RegExp('[a-z0-9]+@[a-z]+\\.[a-z]'); // 이메일 정규 표현식
 const REGEXP_PASSWORD = new RegExp(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/); // 영문, 숫자 1개 이상 포함 및 8자 이상
 
 const Input = ({
@@ -124,7 +124,7 @@ const Input = ({
             onChange={(e) => handleInputValue(e)}
             onBlur={handleError}
             className={isError ? styles.inputError : styles.input}
-            type={!isView ? TEXT : PASSWORD}
+            type={type === TEXT ? TEXT : !isView ? TEXT : PASSWORD}
             placeholder={placeholder}
           />
           {type === PASSWORD && (
