@@ -19,7 +19,7 @@ type AnchorPositionType = {
 type EditableCardType = {
   url: string;
   imageSource?: string;
-  alt?: string;
+  alt: string;
   elapsedTime?: string;
   description?: string;
   createdAt?: string;

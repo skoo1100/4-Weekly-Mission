@@ -22,24 +22,29 @@ const cx = classNames.bind(styles);
 
 const SignLayout = ({ signType, logo, signForm, submitButton, social, sign }: SigninLayoutType) => {
   const router = useRouter();
-  console.log(sign);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (sign.email && sign.password) {
       const data = await UsePostUser(signType, sign);
-      console.log(data);
+
       if (data === 200) {
         router.push('/folder');
+        return;
       }
+      if (signType === 'sign-in') {
+        alert('잘못된 로그인 입니다.');
+        return;
+      }
+      alert('잘못된 회원가입 입니다.');
       return;
     }
+    alert('이메일과 비밀번호를 정확히 입력해주세요.');
   };
 
   const handleEnterKey = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
-      console.log('sex');
       handleSubmit(e);
     }
   };
