@@ -1,0 +1,45 @@
+@import '@/styles/global.scss';
+
+.social {
+  display: flex;
+  width: 400px;
+  padding: 1.2rem 2.4rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid $color-gray20;
+  background: $color-gray10;
+}
+
+.social p {
+  color: $color-gray100;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon-google {
+  position: relative;
+}
+
+.google {
+  position: absolute;
+  z-index: $z-index-popover;
+  top: 0.95rem;
+  right: 0.95rem;
+}
+
+.social-icon-kakaotalk {
+  position: relative;
+}
+
+.kakaotalk {
+  position: absolute;
+  z-index: $z-index-popover;
+  top: 0.95rem;
+  right: 0.95rem;
+}

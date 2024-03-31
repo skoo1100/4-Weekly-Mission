@@ -1,0 +1,11 @@
+@import '@/styles/global.scss';
+
+.signButton {
+  width: 400px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+  color: $color-gray-light;
+  font-size: 18px;
+  font-weight: 600;
+}

@@ -1,0 +1,55 @@
+@import '@/styles/global.scss';
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.labels {
+  color: $color-black;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.inputContent {
+  position: relative;
+  height: 70px;
+}
+
+.input {
+  padding: 1.5rem 1.8rem;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  width: 100%;
+  border: 1px solid #ccd5e3;
+}
+
+.input:focus {
+  border: 1px solid #6d6afe;
+}
+
+.inputError {
+  padding: 1.5rem 1.8rem;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  width: 100%;
+  border: 1px solid #ff5b56;
+}
+
+.errorMessage {
+  font-size: 1.4rem;
+  color: #ff5b56;
+  margin-top: 0.5rem;
+}
+
+.inputContent .eyeIcon {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  right: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
