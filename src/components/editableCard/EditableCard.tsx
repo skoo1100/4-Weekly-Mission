@@ -17,12 +17,13 @@ type AnchorPositionType = {
 };
 
 type EditableCardType = {
+  title: string;
   url: string;
-  imageSource?: string;
+  image_source?: string;
   alt: string;
   elapsedTime?: string;
   description?: string;
-  createdAt?: string;
+  created_at?: string;
   popoverPosition: AnchorPositionType;
   onDeleteClick: () => void;
   onAddToFolderClick: () => void;
@@ -31,12 +32,13 @@ type EditableCardType = {
 const cx = classNames.bind(styles);
 
 const EditableCard = ({
+  title,
   url,
-  imageSource,
+  image_source,
   alt,
   elapsedTime,
   description,
-  createdAt,
+  created_at,
   popoverPosition,
   onDeleteClick,
   onAddToFolderClick,
@@ -67,11 +69,11 @@ const EditableCard = ({
   return (
     <Link href={url} target="_blank" rel="noopener noreferrer">
       <Card onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-        <CardImage imageSource={imageSource} alt={alt} isZoomedIn={isHovered} />
+        <CardImage imageSource={image_source} alt={title} isZoomedIn={isHovered} />
         <CardContent
           elapsedTime={elapsedTime}
           description={description}
-          createdAt={createdAt}
+          createdAt={created_at}
           isHovered={isHovered}
         />
         <button className={cx('star')} onClick={(event) => event.preventDefault()}>

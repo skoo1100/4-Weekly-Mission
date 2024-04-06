@@ -9,6 +9,7 @@ import { MODALS_ID } from '@/utils/constant';
 import { KeyboardEventHandler } from 'react';
 
 type LinkData = {
+  title: string;
   id: number;
   url: string;
   imageSource: string;
@@ -37,6 +38,7 @@ const CardList = ({ folders, links, searchValue }: CardListType) => {
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
   const [currentModal, setCurrentModal] = useState<string | null>(null);
   const [selectedLinkUrl, setSelectedLinkUrl] = useState<string | undefined>(undefined);
+  const [filterLinks, setFilterLinks] = useState<LinkData[]>(links);
 
   const closeModal = () => setCurrentModal(null);
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -62,13 +64,11 @@ const CardList = ({ folders, links, searchValue }: CardListType) => {
     [cardListRef],
   );
 
-  const [filterLinks, setFilterLinks] = useState<LinkData[]>(links);
-
   useEffect(() => {
     if (searchValue !== '') {
       const filtered = links.filter(
         (link) =>
-          link.alt?.toLowerCase().includes(searchValue.toLowerCase()) ||
+          link.title?.toLowerCase().includes(searchValue.toLowerCase()) ||
           link.description?.toLowerCase().includes(searchValue.toLowerCase()) ||
           link.url?.toLowerCase().includes(searchValue.toLowerCase()),
       );
@@ -76,7 +76,7 @@ const CardList = ({ folders, links, searchValue }: CardListType) => {
     } else {
       setFilterLinks(links);
     }
-  }, [searchValue]);
+  }, [searchValue, links]);
 
   if (filterLinks.length === 0) return <NoLink />;
   return (

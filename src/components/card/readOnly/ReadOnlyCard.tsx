@@ -6,20 +6,20 @@ import Link from 'next/link';
 
 type ReadOnlyCardType = {
   url: string;
-  imageSource: string;
-  alt: string;
+  image_source: string;
+  title: string;
   elapsedTime: string;
   description: string;
-  createdAt: string;
+  created_at: string;
 };
 
 const ReadOnlyCard = ({
   url,
-  imageSource,
-  alt,
+  image_source,
+  title,
   elapsedTime,
   description,
-  createdAt,
+  created_at,
 }: ReadOnlyCardType) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseOver = () => setIsHovered(true);
@@ -28,11 +28,11 @@ const ReadOnlyCard = ({
   return (
     <Link href={url} target="_blank" rel="noopener noreferrer">
       <Card onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-        <CardImage imageSource={imageSource} alt={alt} isZoomedIn={isHovered} />
+        <CardImage imageSource={image_source} alt={title} isZoomedIn={isHovered} />
         <CardContent
           elapsedTime={elapsedTime}
           description={description}
-          createdAt={createdAt}
+          createdAt={created_at}
           isHovered={isHovered}
         />
       </Card>

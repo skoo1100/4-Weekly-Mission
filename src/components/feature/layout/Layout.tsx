@@ -1,9 +1,9 @@
 import styles from './Layout.module.scss';
 import classNames from 'classnames/bind';
-import { useGetUser } from '@/apis/useGetUser';
+import { accessGetData } from '@/apis/accessGetData';
 import Footer from '@/components/footer/Footer';
 import NavigationBar from '@/components/navigationBar/NavigationBar';
-import { LegacyRef } from 'react';
+import { LegacyRef, useState, useEffect } from 'react';
 
 type LayoutType = {
   children: React.ReactNode;
@@ -13,15 +13,32 @@ type LayoutType = {
 
 interface Data {
   email?: string;
+  //image_source: string;
   profileImageSource?: string;
 }
 
 const cx = classNames.bind(styles);
 
 const Layout = ({ children, footerRef, isSticky = true }: LayoutType) => {
-  const { data } = useGetUser();
-  const { email, profileImageSource }: Data = data || {};
-  const profile = data ? { email, profileImageSource } : null;
+  const accessToken = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+  //const data = await accessGetData('users', accessToken);
+  const [profile, setProfile] = useState<Data>({
+    email: '',
+    profileImageSource: '',
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await accessGetData(`users`, accessToken);
+      if (data) {
+        setProfile({
+          email: data[0].email || '',
+          profileImageSource: data[0].image_source || '',
+        });
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>

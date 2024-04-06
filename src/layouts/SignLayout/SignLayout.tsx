@@ -27,9 +27,17 @@ const SignLayout = ({ signType, logo, signForm, submitButton, social, sign }: Si
     e.preventDefault();
 
     if (sign.email && sign.password) {
-      const data = await UsePostUser(signType, sign);
-
-      if (data === 200) {
+      const { response, data } = await UsePostUser(signType, sign);
+      if (response.status === 200) {
+        /*
+        localStorage.setItem('refreshToken', data.data.refreshToken);
+        const { data: refresh } = await UsePostUser('refresh-token', {
+          refresh_token: localStorage.getItem('refreshToken'),
+        });
+        localStorage.setItem('accessToken', refresh.data.accessToken);
+        */
+        localStorage.setItem('accessToken', data.data.accessToken);
+        //localStorage.removeItem('accessToken');
         router.push('/folder');
         return;
       }

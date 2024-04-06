@@ -14,6 +14,7 @@ const nextConfig = {
       'testing-library.com',
       'static.cdninstagram.com',
       's.pstatic.net',
+      'avatars.githubusercontent.com',
     ],
   },
 };

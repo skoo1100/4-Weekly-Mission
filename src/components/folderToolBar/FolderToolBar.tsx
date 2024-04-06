@@ -10,7 +10,7 @@ import {
   KAKAO_SHARE_DATA,
   MODALS_ID,
 } from '@/utils/constant';
-import { useState, KeyboardEventHandler } from 'react';
+import { useState, KeyboardEventHandler, ChangeEvent } from 'react';
 import ShareModal from '@/components/modal/share/ShareModal';
 import InputModal from '@/components/modal/input/InputModal';
 import AlertModal from '@/components/modal/alert/AlertModal';
@@ -31,6 +31,8 @@ type FolderToolBarType = {
 const cx = classNames.bind(styles);
 
 const FolderToolBar = ({ folders, selectedFolderId, onFolderClick }: FolderToolBarType) => {
+  const [inputValue, setInputValue] = useState('');
+
   const { shareKakao } = useKakaoSdk();
   const [currentModal, setCurrentModal] = useState<string | null>(null);
 
@@ -46,6 +48,10 @@ const FolderToolBar = ({ folders, selectedFolderId, onFolderClick }: FolderToolB
     if (event.key === 'Escape') {
       closeModal();
     }
+  };
+
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
   };
 
   const handleKakaoClick = () => {
@@ -87,6 +93,8 @@ const FolderToolBar = ({ folders, selectedFolderId, onFolderClick }: FolderToolB
           buttonText="추가하기"
           onCloseClick={closeModal}
           onKeyDown={handleKeyDown}
+          onChange={handleInputValue}
+          value={inputValue}
         />
       </div>
       <h2 className={cx('folder-name')}>{folderName}</h2>

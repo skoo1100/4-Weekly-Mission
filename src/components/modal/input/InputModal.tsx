@@ -5,6 +5,7 @@ import Modal from '@/components/modal/Modal';
 import ModalContentBox from '@/components/modal/content/contentBox/ModalContentBox';
 import ModalContentButton from '@/components/modal/content/contentButton/ModalContentButton';
 import ModalContentTitle from '@/components/modal/content/contentTitle/ModalContentTitle';
+import { usePostUser as UsePostUser } from '@/apis/usePostUser';
 
 type InputModalType = {
   isOpen: boolean;
@@ -29,6 +30,15 @@ const InputModal: React.FC<InputModalType> = ({
   value,
   onChange,
 }) => {
+  const accessToken = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+
+  const handleClick = async () => {
+    if (title === '폴더 추가') {
+      //const { response, data } = await UsePostUser('folders', { name: value }, accessToken);
+      //console.log(response);
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onBackdropClick={onCloseClick} onKeyDown={onKeyDown}>
       <ModalContentBox
@@ -36,7 +46,7 @@ const InputModal: React.FC<InputModalType> = ({
         content={
           <div className={cx('modal-content')}>
             <Input value={value} onChange={onChange} placeholder={placeholder} />
-            <ModalContentButton>{buttonText}</ModalContentButton>
+            <ModalContentButton onClick={handleClick}>{buttonText}</ModalContentButton>
           </div>
         }
         onCloseClick={onCloseClick}

@@ -14,12 +14,13 @@ const cx = classNames.bind(styles);
 
 const CardImage = ({ imageSource, alt, isZoomedIn }: CardImageType) => {
   return (
-    <Image
+    //Image domain 지정 너무 빡세다 ㅠㅠ
+    <img
       className={cx('container', { zoomin: isZoomedIn })}
       src={`${imageSource ?? DEFAULT_IMAGE}`}
       alt={alt}
-      width={340}
-      height={200}
+      //width={340}
+      //height={200}
     />
     /*
     <div

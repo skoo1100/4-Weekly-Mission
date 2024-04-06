@@ -51,8 +51,8 @@ const Input = ({
   const handleError = async () => {
     if (labelText === '이메일') {
       if (signType === 'signup') {
-        const data = await UsePostUser('check-email', { email: inputValue });
-        if (data === 409) {
+        const { response } = await UsePostUser('check-email', { email: inputValue });
+        if (response.status === 409) {
           setCheck({
             ...check,
             email: true,
